@@ -1,5 +1,4 @@
 // Copyright (C) 2021 Paul Ciarlo
-
 function ResolvablePromise() {
     this.resolvefun = null;
     this.rejectfun = null;
@@ -23,13 +22,13 @@ ResolvablePromise.prototype = Object.assign(Object.create(Promise.prototype), {
         this.value = value;
         return this.rejectfun.call(this.p, value);
     },
-    then(fun) {
+    async then(fun) {
         return this.p.then(fun);
     },
-    catch(fun) {
+    async catch(fun) {
         return this.p.catch(fun);
     },
-    finally(fun) {
+    async finally(fun) {
         return this.p.finally(fun);
     },
     async wait() {
