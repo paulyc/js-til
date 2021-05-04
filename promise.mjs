@@ -13,11 +13,13 @@ function ResolvablePromise() {
 ResolvablePromise.prototype = Object.assign(Object.create(Promise.prototype), {
     constructor: ResolvablePromise,
     resolve(value) {
+        if (this.state !== 'pending') return;
         this.state = 'resolved';
         this.value = value;
         return this.resolvefun.call(this.p, value);
     },
     reject(value) {
+        if (this.state !== 'pending') return;
         this.state = 'rejected';
         this.value = value;
         return this.rejectfun.call(this.p, value);
